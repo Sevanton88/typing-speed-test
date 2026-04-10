@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TypeLab — Typing Speed Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Header ── -->
+  <header class="header">
+    <div class="brand">
+      <span class="brand-name">TypeLab</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-sub">Speed Test</span>
+    </div>
+    <div class="header-stats">
+      <div class="hstat" id="hstat-best">
+        <span class="hstat-val" id="best-wpm">—</span>
+        <span class="hstat-label">best wpm</span>
+      </div>
+      <div class="hstat" id="hstat-tests">
+        <span class="hstat-val" id="tests-taken">0</span>
+        <span class="hstat-label">tests taken</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- ── Mode selector ── -->
+    <div class="mode-bar">
+      <button class="mode-btn active" data-mode="15">15s</button>
+      <button class="mode-btn" data-mode="30">30s</button>
+      <button class="mode-btn" data-mode="60">60s</button>
+      <div class="mode-divider"></div>
+      <button class="mode-btn" data-mode="words">25 words</button>
+    </div>
+
+    <!-- ── Timer / Word count display ── -->
+    <div class="timer-display" id="timer-display">
+      <span id="timer-val">15</span>
+      <span class="timer-unit" id="timer-unit">sec</span>
+    </div>
+
+    <!-- ── Quote / Word display ── -->
+    <div class="typing-area" id="typing-area">
+      <div class="words-wrap" id="words-wrap"></div>
+      <div class="caret" id="caret"></div>
+    </div>
+
+    <!-- ── Hidden real input ── -->
+    <input
+      class="ghost-input"
+      id="ghost-input"
+      type="text"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="false"
+      aria-label="Start typing here"
+    />
+
+    <!-- ── Click to focus hint ── -->
+    <div class="focus-hint" id="focus-hint">
+      <span class="focus-icon">⌨</span>
+      click here or press any key to start
+    </div>
+
+    <!-- ── Live stats (shown during test) ── -->
+    <div class="live-stats hidden" id="live-stats">
+      <div class="live-stat">
+        <span class="live-val" id="live-wpm">0</span>
+        <span class="live-label">wpm</span>
+      </div>
+      <div class="live-stat">
+        <span class="live-val" id="live-acc">100</span>
+        <span class="live-label">acc %</span>
+      </div>
+      <div class="live-stat">
+        <span class="live-val" id="live-errors">0</span>
+        <span class="live-label">errors</span>
+      </div>
+    </div>
+
+    <!-- ── Progress bar (time mode) ── -->
+    <div class="progress-track" id="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <p>Dev by Dusan</p>
+  </footer>
+
+  <!-- ── Result Screen ── -->
+  <div class="result-overlay hidden" id="result-overlay">
+    <div class="result-card">
+
+      <div class="result-header">
+        <div class="result-label">test complete</div>
+        <div class="result-mode-tag" id="result-mode-tag">30 seconds</div>
+      </div>
+
+      <div class="result-hero">
+        <div class="result-wpm" id="result-wpm">0</div>
+        <div class="result-wpm-label">words per minute</div>
+      </div>
+
+      <div class="result-grid">
+        <div class="result-stat">
+          <div class="rstat-val" id="rstat-acc">0%</div>
+          <div class="rstat-label">accuracy</div>
+        </div>
+        <div class="result-stat">
+          <div class="rstat-val" id="rstat-correct">0</div>
+          <div class="rstat-label">correct</div>
+        </div>
+        <div class="result-stat">
+          <div class="rstat-val" id="rstat-errors">0</div>
+          <div class="rstat-label">errors</div>
+        </div>
+        <div class="result-stat">
+          <div class="rstat-val" id="rstat-chars">0</div>
+          <div class="rstat-label">characters</div>
+        </div>
+      </div>
+
+      <!-- Personal best badge -->
+      <div class="pb-badge hidden" id="pb-badge">🏆 New Personal Best!</div>
+
+      <div class="result-actions">
+        <button class="btn-restart" id="restart-btn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M2 8a6 6 0 1 0 1.5-3.9M2 4v4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Try Again
+        </button>
+        <button class="btn-change" id="change-mode-btn">Change Mode</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="words.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
